@@ -1,0 +1,38 @@
+name: Automated Data Preprocessing
+
+on:
+  push:
+    paths:
+      - 'namadataset_raw/**'
+      - 'preprocessing/automate_Akbar-Fadhila.py'
+  workflow_dispatch:
+
+jobs:
+  preprocess:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas scikit-learn numpy
+
+    - name: Run Preprocessing Script
+      run: |
+        python preprocessing/automate_Akbar-Fadhila.py
+
+    - name: Commit and Push Preprocessed Data
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        # Check if there are changes to the preprocessed dataset
+        git add preprocessing/namadataset_preprocessing/stroke_data_preprocessed.csv
+        git diff-index --quiet HEAD || (git commit -m "chore: automated preprocessing update" && git push)
