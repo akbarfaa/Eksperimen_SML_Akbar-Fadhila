@@ -80,7 +80,7 @@ if __name__ == "__main__":
     # Define directory paths
     base_dir = os.path.dirname(os.path.abspath(__file__))
     raw_data_path = os.path.join(base_dir, "..", "namadataset_raw", "healthcare-dataset-stroke-data.csv")
-    output_data_path = os.path.join(base_dir, "namadataset_preprocessing", "stroke_data_preprocessed.csv")
+    output_data_path = os.path.join(base_dir, "healthcare-dataset-stroke-data_preprocessing", "stroke_data_preprocessed.csv")
     
     try:
         df_raw = load_data(raw_data_path)

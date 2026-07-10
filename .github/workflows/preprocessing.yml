@@ -34,5 +34,5 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         # Check if there are changes to the preprocessed dataset
-        git add preprocessing/namadataset_preprocessing/stroke_data_preprocessed.csv
+        git add preprocessing/healthcare-dataset-stroke-data_preprocessing/stroke_data_preprocessed.csv
         git diff-index --quiet HEAD || (git commit -m "chore: automated preprocessing update" && git push)
